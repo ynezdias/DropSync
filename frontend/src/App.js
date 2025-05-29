@@ -13,15 +13,31 @@ export default function App() {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUpload = () => {
-    if (selectedFile) {
-      const newDoc = {
-        name: selectedFile.name,
-        url: URL.createObjectURL(selectedFile) // temporary view link
-      };
-      setDocuments([...documents, newDoc]);
-      alert(`Uploaded: ${selectedFile.name}`);
-      setSelectedFile(null);
+  const handleUpload = async () => {
+    if (!selectedFile) return;
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    try {
+      const res = await fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        const fileUrl = `http://localhost:5000/uploads/${data.filename}`;
+        setDocuments([...documents, { name: data.filename, url: fileUrl }]);
+        alert("Uploaded successfully!");
+        setSelectedFile(null);
+      } else {
+        alert("Upload failed: " + data.message);
+      }
+    } catch (err) {
+      console.error("Upload error:", err);
+      alert("Error uploading file.");
     }
   };
 

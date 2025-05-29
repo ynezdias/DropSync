@@ -60,7 +60,7 @@ body, html, #root {
 }
 
 .content {
-  padding: 40px;
+  padding: 50px;
   margin-left: 0;
   transition: margin-left 0.3s ease;
   min-height: 90vh;
@@ -68,7 +68,7 @@ body, html, #root {
 }
 
 .content.sidebar-open {
-  margin-left: 260px;
+  margin-left: 270px;
 }
 /* Modal overlay */
 .modal-overlay {
