@@ -1,0 +1,109 @@
+body, html, #root {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #001365, #a74eff);
+  color: white;
+  overflow-x: hidden;
+}
+
+.hamburger {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 250px;
+  height: 100%;
+  background: rgba(0, 4, 33, 0.237);
+  padding: 20px;
+  box-sizing: border-box;
+  transition: left 0.3s ease;
+  z-index: 1050;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sidebar ul li:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.content {
+  padding: 40px;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  min-height: 90vh;
+  box-sizing: border-box;
+}
+
+.content.sidebar-open {
+  margin-left: 260px;
+}
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1200;
+}
+
+/* Modal content box */
+.modal-content {
+  background: #222;
+  padding: 20px 30px;
+  border-radius: 8px;
+  width: 300px;
+  color: white;
+  box-shadow: 0 0 10px #000;
+}
+
+.modal-content button {
+  margin-top: 15px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #4a90e2;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #357ABD;
+}

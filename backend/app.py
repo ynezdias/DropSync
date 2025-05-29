@@ -5,9 +5,8 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Define the directory on your laptop where files should be saved
 UPLOAD_FOLDER = r'C:\Users\Ynez Dias\OneDrive\Desktop\DropSync\uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Create folder if it doesn't exist
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -15,7 +14,6 @@ def upload_file():
         return jsonify({'message': 'No file part'}), 400
 
     file = request.files['file']
-
     if file.filename == '':
         return jsonify({'message': 'No selected file'}), 400
 
@@ -23,3 +21,7 @@ def upload_file():
     file.save(filepath)
 
     return jsonify({'message': f'File "{file.filename}" uploaded successfully!'})
+
+# 🔽 This line must be here
+if __name__ == '__main__':
+    app.run(debug=True)
